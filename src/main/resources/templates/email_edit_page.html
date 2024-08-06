@@ -13,7 +13,7 @@
 <form th:action="@{/email/edit}" th:object="${email}" method="post">
 
     <div>
-        <p>Input: <input type="text" th:field="*{body}" /></p>
+        <p>Input: <textarea type="text" rows="6" cols="70" th:field="*{body}" /></p>
     </div>
 
     <div>

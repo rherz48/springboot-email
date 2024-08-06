@@ -1,6 +1,5 @@
-package com.example.arkoseemail.model;
+package com.example.springbootemail.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class DateModel {

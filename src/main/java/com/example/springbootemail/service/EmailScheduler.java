@@ -1,6 +1,6 @@
-package com.example.arkoseemail.service;
+package com.example.springbootemail.service;
 
-import com.example.arkoseemail.model.EmailModel;
+import com.example.springbootemail.model.EmailModel;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.Response;
@@ -18,34 +18,30 @@ public class EmailScheduler implements Job {
 
     private final Logger logger = LoggerFactory.getLogger(EmailScheduler.class);
 
+    public void execute(JobExecutionContext context) {
 
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-
+        //Get job context for the EmailModel to be used when sending the email
         EmailModel email = (EmailModel) context.getJobDetail().getJobDataMap().get("email");
 
         logger.info("Email: {}", email.getEmailAddress());
-        logger.info("Subject: {}", email.getSubject());
-        logger.info("Body: {}", email.getBody());
 
         //Send email to recipient
         try {
             sendEmail(email.getEmailAddress(), email.getSubject(), email.getBody());
-            logger.info("Successfully sent email to recipient");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     private void sendEmail(String recipient, String subject, String body) throws IOException {
-//        Email from = new Email(System.getenv("EMAIL_FROM"));
+
+        //Setup email parameters and send email request
         Email from = new Email("ryan@ryanherzog.com");
-//        String subject = "Sending with Twilio SendGrid is Fun";
         Email to = new Email(recipient);
         Content content = new Content("text/html", body);
         Mail mail = new Mail(from, subject, to, content);
 
-//        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
-        SendGrid sg = new SendGrid("");
+        SendGrid sg = new SendGrid(System.getenv("SENDGRID_API_KEY"));
 
         Request request = new Request();
         try {
@@ -54,7 +50,6 @@ public class EmailScheduler implements Job {
             request.setBody(mail.build());
             Response response = sg.api(request);
             logger.info("Status code: {}", response.getStatusCode());
-            logger.info("Body: {}", response.getBody());
             logger.info("Headers: {}", response.getHeaders());
         } catch (IOException ex) {
             throw ex;

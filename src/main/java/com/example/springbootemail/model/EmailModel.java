@@ -1,19 +1,18 @@
-package com.example.arkoseemail.model;
+package com.example.springbootemail.model;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class EmailModel {
 
-
     @NotBlank(message = "Email cannot be left blank")
     @Email(message = "Invalid email")
     private String emailAddress;
 
-    @NotBlank(message = "Subject cannot be left blank")
+//    @NotBlank(message = "Subject cannot be left blank")
     private String subject;
 
-    @NotBlank(message = "Body cannot be left blank")
+//    @NotBlank(message = "Body cannot be left blank")
     private String body;
 
     public EmailModel() {

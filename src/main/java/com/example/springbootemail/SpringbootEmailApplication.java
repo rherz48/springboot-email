@@ -1,13 +1,13 @@
-package com.example.arkoseemail;
+package com.example.springbootemail;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ArkoseEmailApplication {
+public class SpringbootEmailApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ArkoseEmailApplication.class, args);
+		SpringApplication.run(SpringbootEmailApplication.class, args);
 	}
 
 }
