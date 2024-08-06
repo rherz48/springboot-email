@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Edit page</h1>
+
+<h1>Form</h1>
+
+<form th:action="@{/email/edit}" th:object="${email}" method="post">
+
+    <div>
+        <p>Input: <input type="text" th:field="*{body}" /></p>
+    </div>
+
+    <div>
+        <p>Subject: <input type="text" th:field="*{subject}" /></p>
+    </div>
+
+    <div>
+        <p>Recipient: <input type="text" th:field="*{emailAddress}" /></p>
+    </div>
+
+    <div>
+        <p>Schedule
+        <div th:object="${date}">
+            <input type="datetime-local" th:field="*{localDateTime}">
+        </div>
+        </p>
+
+    </div>
+
+    <div th:if="${#fields.hasErrors('body')}" th:errors="*{body}">Body error</div>
+    <div th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}">Subject error</div>
+    <div th:if="${#fields.hasErrors('emailAddress')}" th:errors="*{emailAddress}">Email error</div>
+
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+
+
+</body>
+</html>

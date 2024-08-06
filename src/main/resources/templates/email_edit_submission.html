@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arkose</title>
+</head>
+<body>
+
+<h1>Result</h1>
+<p th:text="'Email address: ' + ${email.emailAddress}"></p>
+<p th:text="'Subject: ' + ${email.subject}"></p>
+<p th:text="'Body: ' + ${email.body}"></p>
+<a href="/email/edit">Back to edit page</a>
+
+</body>
+</html>
